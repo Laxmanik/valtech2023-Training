@@ -1,6 +1,10 @@
 package firstWeb;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 
 public class CounterFilter implements Filter {
 
+	private Connection connection;
+	
 	@Override
 	public void destroy() {
 		System.out.println("Destroy of Counter Filter....");
@@ -39,17 +45,47 @@ public class CounterFilter implements Filter {
 		} else {
 			counters.put(uri, 1);
 		}
-		printCounters(counters);
+		try {
+			printCounters(counters);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		chain.doFilter(request, response);
 	}
 
-	private void printCounters(Map<String, Integer> counters) {
+	private void printCounters(Map<String, Integer> counters) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.jdbc.Driver");
 		
+		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/valtech_2023", "root", "root");
+		PreparedStatement ps = connection.prepareStatement("INSERT INTO COUNTER(URI, COUNT) VALUES (?, ?)");
 		for(String s:counters.keySet()) {
 			System.out.println("Uri ---> "+s+" Counter ----> "+counters.get(s));
+			ps.setString(1, s);
+			ps.setInt(2, counters.get(s));
+			ps.executeUpdate();
 		}
 	}
+
+//	private void saveMaptoCounterDatabase() {
+//		try {
+//			Class.forName("com.mysql.jdbc.Driver");
+//			
+//			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/valtech_2023", "root", "root");
+//			PreparedStatement ps = connection.prepareStatement("INSERT INTO COUNTER(URI, COUNT) VALUES (?, ?)");
+//			for (Map<String, Integer> entry : counters.entrySet())
+//			ps.setString(1, s.getKey());
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {

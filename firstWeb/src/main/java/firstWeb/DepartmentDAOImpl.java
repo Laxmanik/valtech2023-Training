@@ -199,7 +199,7 @@ public class DepartmentDAOImpl extends EmployeeDAOImpl implements DepartmentDAO 
 //		dao.deleteDepartment("d003");
 
 //		System.out.println(dao.count());
-//		System.out.println(dao.getAllDepartment());
+		System.out.println(dao.getAllDepartment());
 
 //		System.out.println(dao.getEmployeeByDeptId(1));
 
