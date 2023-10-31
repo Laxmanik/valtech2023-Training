@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+	<title>Student Form</title>
+</head>
+<body>
+	<h1 align="center">Student Form</h1>
+	<form action="student-response.jsp" method="post" align="center">
+	First Name:	<input type="text" name="firstName" required/><br/><br/>
+	Last name: <input type="text" name="lastName" required/><br/><br/>
+	<!-- Drop Down list -->
+	Country: <select name="country">
+		<option>India</option>
+		<option>Russia</option>
+		<option>Germany</option>
+		<option>USA</option>
+		<option>Africa</option>
+	</select><br/><br/>
+	Favourite Programming Language:
+	<div id="fouriteLanguageDropDownList">
+		<input type="radio" name="favouriteLanguage" value="Java"> Java
+		<input type="radio" name="favouriteLanguage" value="C#"> C#
+		<input type="radio" name="favouriteLanguage" value="PHP"> PHP
+		<input type="radio" name="favouriteLanguage" value="Python"> Python
+		<input type="radio" name="favouriteLanguage" value="C++"> C++
+	</div><br/><br/>
+	Select any two courses:
+	<div id="courseCheckbox">
+		<input type="checkbox" name="course" value="Full Stack"/> Full Stack
+		<input type="checkbox" name="course" value="AI"/> AI
+		<input type="checkbox" name="course" value="Data Science"/> Data Science
+		<input type="checkbox" name="course" value="Machine Learning"/> Machine Learning
+	</div><br/>
+	<input type="submit" value="submit"/>
+	</form>
+</body>
+</html>
