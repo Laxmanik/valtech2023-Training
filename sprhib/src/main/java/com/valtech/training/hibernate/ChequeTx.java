@@ -4,7 +4,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("ctx")
+//@DiscriminatorValue("ctx")
 public class ChequeTx extends Tx {
 
 	private int chequeNum;
