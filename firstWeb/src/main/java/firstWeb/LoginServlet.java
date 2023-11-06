@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	String errorMsg = "";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -49,14 +51,14 @@ public class LoginServlet extends HttpServlet {
 		
 		
 		if(name.length()<4) {
-			String errorMsg = "Username should have more than 4 characters";
+			errorMsg  = "Username should have more than 4 characters";
 			request.setAttribute("message2", errorMsg);
 		}
 		else if (pass.length()<4) {
-			String errorMsg = "Password should have more than 4 characters";
+			errorMsg = "Password should have more than 4 characters";
 			request.setAttribute("message1", errorMsg);
 		}else {
-			String errorMsg = "Username & Password are wrong";
+			errorMsg = "Username & Password are wrong";
 			request.setAttribute("message3", errorMsg);
 		}
 		request.getRequestDispatcher("login.jsp").forward(request, response);

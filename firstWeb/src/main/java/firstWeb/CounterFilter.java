@@ -14,7 +14,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -62,29 +61,29 @@ public class CounterFilter implements Filter {
 		Class.forName("com.mysql.jdbc.Driver");
 		
 		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/valtech_2023", "root", "root");
-		PreparedStatement ps = connection.prepareStatement("INSERT INTO COUNTER(URI, COUNT) VALUES (?, ?)");
+		PreparedStatement ps = connection.prepareStatement("UPDATE counter SET count = s? WHERE URI = ?");
 		for(String s:counters.keySet()) {
 			System.out.println("Uri ---> "+s+" Counter ----> "+counters.get(s));
-			ps.setString(1, s);
-			ps.setInt(2, counters.get(s));
+			
+			ps.setInt(1, counters.get(s));
+			ps.setString(2, s);
 			ps.executeUpdate();
 		}
 	}
 
 //	private void saveMaptoCounterDatabase() {
-//		try {
-//			Class.forName("com.mysql.jdbc.Driver");
-//			
-//			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/valtech_2023", "root", "root");
-//			PreparedStatement ps = connection.prepareStatement("INSERT INTO COUNTER(URI, COUNT) VALUES (?, ?)");
-//			for (Map<String, Integer> entry : counters.entrySet())
-//			ps.setString(1, s.getKey());
-//		} catch (ClassNotFoundException e) {
-//			e.printStackTrace();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+//		private void printCounters(Map<String, Integer> counters) throws ClassNotFoundException, SQLException {
+//	Class.forName("com.mysql.jdbc.Driver");
+//	
+//	connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/valtech_2023", "root", "root");
+//	PreparedStatement ps = connection.prepareStatement("UPDATE counter SET count = ? WHERE URI = ?");
+//	for(String s:counters.keySet()) {
+//		System.out.println("Uri ---> "+s+" Counter ----> "+counters.get(s));
+//		
+//		ps.setInt(1, counters.get(s));
+//		ps.setString(2, s);
+//		ps.executeUpdate();
+//	}
 //	}
 
 	@Override
