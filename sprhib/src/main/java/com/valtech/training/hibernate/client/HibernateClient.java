@@ -21,6 +21,8 @@ import com.valtech.training.hibernate.BankAccountId;
 import com.valtech.training.hibernate.ChequeTx;
 import com.valtech.training.hibernate.Customer;
 import com.valtech.training.hibernate.Employee;
+import com.valtech.training.hibernate.OrderSummary;
+import com.valtech.training.hibernate.OrderSummaryId;
 import com.valtech.training.hibernate.Registration;
 import com.valtech.training.hibernate.TellerTx;
 import com.valtech.training.hibernate.Tx;
@@ -37,7 +39,7 @@ public class HibernateClient {
 				.addAnnotatedClass(AtmTx.class);
 
 		cfg.addAnnotatedClass(Customer.class).addAnnotatedClass(Address.class).addAnnotatedClass(Registration.class)
-				.addAnnotatedClass(BankAccount.class);
+				.addAnnotatedClass(BankAccount.class).addAnnotatedClass(OrderSummary.class);
 
 		cfg.addAnnotatedClass(Account.class);
 		SessionFactory sesFac = cfg.buildSessionFactory();
@@ -45,17 +47,21 @@ public class HibernateClient {
 		Session ses = sesFac.openSession();
 
 		Transaction tx = ses.beginTransaction();
+		
+		ses.persist(new OrderSummary(1, 2, 3));
+		OrderSummary os = (OrderSummary) ses.load(OrderSummary.class, new OrderSummaryId(1, 2));
+		System.out.println("Qty = "+os.getQuantity());
 
-		ses.persist(new BankAccount(new BankAccountId("SB",1), 3000));
-		
-		BankAccountId id = new BankAccountId("SB", 1);
-		BankAccount ba = new BankAccount(id, 3000);
-		
+//		ses.persist(new BankAccount(new BankAccountId("SB",1), 3000));
+//		
+//		BankAccountId id = new BankAccountId("SB", 1);
+//		BankAccount ba = new BankAccount(id, 3000);
+//		
 //		Customer cust = new Customer("Abc", 23);
 //		ses.save(cust);
 //		Address add = new Address("JP Nagar", "Blr", 560078);
-//		add.setCustomer(cust);
-////		cust.setAddress(add);
+////		add.setCustomer(cust);
+//		cust.setAddress(add);
 //		ses.save(add);
 //		
 //		Account acc = new Account(10000, "SB");
@@ -101,21 +107,21 @@ public class HibernateClient {
 //		ses.save(new ChequeTx(2000, 123123, 34435));
 //		ses.save(new TellerTx(3000, 123, 345));
 //		ses.save(new AtmTx(5000, 789));
-
-//		ses.createQuery("select distinct tx from Tx tx").list().forEach(t -> System.out.println(t));
-
-//		Query query = ses.createQuery("SELECT DISTINCT c FROM Customer c JOIN c.accounts a JOIN a.txs t WHERE t.amount > ?");
-//		query.setFloat(0, 3000);
+//
+////		ses.createQuery("select distinct tx from Tx tx").list().forEach(t -> System.out.println(t));
+//
+////		Query query = ses.createQuery("SELECT DISTINCT c FROM Customer c JOIN c.accounts a JOIN a.txs t WHERE t.amount > ?");
+////		query.setFloat(0, 3000);
+////		query.list().forEach(t -> System.out.println(t));
+//
+//		Query query = ses.getNamedQuery("Tx.findAllByCityAndAmountGreaterThan");
+////				ses.createQuery("SELECT t FROM Tx t JOIN t.account.customers c WHERE c.address.city = ? AND t.amount > ?");
+//		query.setString(0, "Blr");
+//		query.setFloat(1, 3000);
 //		query.list().forEach(t -> System.out.println(t));
-
-		Query query = ses.getNamedQuery("Tx.findAllByCityAndAmountGreaterThan");
-//				ses.createQuery("SELECT t FROM Tx t JOIN t.account.customers c WHERE c.address.city = ? AND t.amount > ?");
-		query.setString(0, "Blr");
-		query.setFloat(1, 3000);
-		query.list().forEach(t -> System.out.println(t));
-
-//		int id = (Integer)ses.save(new Employee("Abc", df.parse("15-08-1947"), 2000, 'M', false));
-//		System.out.println(id);
+//
+//		int id1 = (Integer)ses.save(new Employee("Abc", df.parse("15-08-1947"), 2000, 'M', false));
+//		System.out.println(id1);
 //		
 //		Employee e = (Employee)ses.get(Employee.class, 1);
 //		System.out.println(e.getClass().getName());

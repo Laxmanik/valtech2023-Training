@@ -18,7 +18,7 @@ class EmployeeServiceTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		appCtx = new ClassPathXmlApplicationContext("tx.xml");
+		appCtx = new ClassPathXmlApplicationContext("tx2.xml");
 		dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 	}
 
