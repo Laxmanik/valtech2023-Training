@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.valtech.training</groupId>
-	<artifactId>first-spring-boot</artifactId>
+	<artifactId>new-spring-boot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>first-spring-boot</name>
 	<description>Demo project for Spring Boot</description>
@@ -21,7 +21,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jdbc</artifactId>
 		</dependency>
-
+ 
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
@@ -33,7 +33,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
+ 
 	<build>
 		<plugins>
 			<plugin>
@@ -42,5 +42,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
+ 
 </project>

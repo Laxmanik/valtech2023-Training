@@ -11,7 +11,8 @@ import com.valtech.training.firstspringboot.Components.HelloWorld;
 
 @SpringBootTest
 class FirstSpringBootApplicationTests {
-@Autowired
+	
+	@Autowired
 	private HelloWorld helloworld;
 	
 
@@ -19,6 +20,7 @@ class FirstSpringBootApplicationTests {
 	void contextLoads() {
 		assertNotNull(helloworld);
 		assertEquals("Hello Spring Boot", helloworld.hello());
+		System.out.println(helloworld.hello());
 	}
 
 }
