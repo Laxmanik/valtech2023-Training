@@ -40,7 +40,6 @@ public class HibernateClient {
 				.addAnnotatedClass(BankAccount.class);
 
 		cfg.addAnnotatedClass(Account.class);
-
 		SessionFactory sesFac = cfg.buildSessionFactory();
 
 		Session ses = sesFac.openSession();

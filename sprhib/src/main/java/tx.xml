@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:beans default-autowire="byType"
+	xmlns:p="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans spring-beans-3.2.xsd ">
+
+	<!-- Employee Service and add Transaction Support through AOP -->
+
+	<p:bean autowire="no"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<p:property name="sessionFactory" ref="sessionFactory"></p:property>
+	</p:bean>
+
+	<p:bean id="transactionInterceptor"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<p:property name="transactionAttributes">
+			<p:props>
+				<p:prop key="*">PROPAGATION_REQUIRED</p:prop>
+				<p:prop key="incrementSalary">PROPAGATION_REQUIRES_NEW</p:prop>
+				<p:prop key="get*">PROPAGATION_SUPPORTS</p:prop>
+			</p:props>
+		</p:property>
+	</p:bean>
+
+	<p:bean id="employeeService"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
+		<p:property name="target">
+			<p:bean
+				class="com.valtech.training.spring.service.EmployeeServiceImpl"></p:bean>
+		</p:property>
+		<p:property name="interceptorNames">
+			<p:list>
+				<p:value>transactionInterceptor</p:value>
+			</p:list>
+		</p:property>
+	</p:bean>
+
+	<!-- Reg DataSource -->
+	<p:bean id="dataSource"
+		class="com.mysql.cj.jdbc.MysqlDataSource">
+		<p:property name="url"
+			value="jdbc:mysql://localhost:3306/valtech_sprhib_2023"></p:property>
+		<p:property name="user" value="root"></p:property>
+		<p:property name="password" value="root"></p:property>
+	</p:bean>
+
+	<!-- SessionFactory -->
+	<p:bean autowire="no" id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<p:property name="dataSource" ref="dataSource"></p:property>
+		<p:property name="annotatedClasses">
+			<p:list>
+				<p:value>com.valtech.training.hibernate.Employee</p:value>
+			</p:list>
+		</p:property>
+		<p:property name="hibernateProperties">
+			<p:props>
+				<p:prop key="show_sql">true</p:prop>
+			</p:props>
+		</p:property>
+	</p:bean>
+
+	<!-- EmployeeDAO -->
+	<p:bean class="com.valtech.training.spring.dao.EmployeeDAOImpl"></p:bean>
+
+
+
+</p:beans>

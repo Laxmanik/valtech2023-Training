@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Login page</title>
+<title>Threads</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -48,7 +48,7 @@
 					<button class="mx-6 font-bold text-black " href="https://www.instagram.com/accounts/login/">Continue with Instagram</button>
 						<span class="mt-2 ml-7 text-2xl font-thin arrow">></span>
 						</div>
-						<footer class="text-center "> <a class="text-xs link-color" href="#"> � 2023 </a>
+						<footer class="text-center "> <a class="text-xs link-color" href="#"> &copy; 2023 </a>
 			<a class="text-xs link-color px-1" href="#"> Threads Terms </a>
 			<a class="text-xs link-color px-1" href="#"> Privacy Policy </a>
 			<a class="text-xs link-color px-1" href="#"> Cookies Policy </a>
@@ -59,7 +59,8 @@
 				
 			</div>
 			
-			<button class="qrbutton"  style="background-image: url('qr.png');"></button>
+			<!-- <button class="qrbutton"  style="background-image: url('qr.png');"></button> -->
+			<img src="qr.png" alt="QR Code" class="qrbutton">
 		</div>
 </body>
 </html>

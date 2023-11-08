@@ -24,13 +24,15 @@ public class Employee {
 	//2.Static variable
 	//3.constructor
 	//4.methods
-//	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) //Hibernate generating primary key through mysql, GenaerationType.Identity -> mysql uses suto-increment on column
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) //Hibernate generating primary key through mysql, GenaerationType.Identity -> mysql uses suto-increment on column
 	
 //	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="xyz") //for oracle, in this case hibernate will set primary key, even insertion query should be given with id
 //	@SequenceGenerator(name="abc",sequenceName = "empseq")                 //for oracle 
 	
-	@Id @GeneratedValue(strategy=GenerationType.TABLE,generator="abc")
-	@TableGenerator(name="abc",table="pktable",pkColumnName="PKcol",pkColumnValue="empseq",valueColumnName="seed") //independent of mysql and oracle, but here hibernate creates primary key based on seed value
+	
+//	@Id @GeneratedValue(strategy=GenerationType.TABLE,generator="abc")
+//	@TableGenerator(name="abc",table="pktable",pkColumnName="PKcol",pkColumnValue="empseq",valueColumnName="seed") //independent of mysql and oracle, but here hibernate creates primary key based on seed value
+	
 	private int id;
 	private String name;
 	@Basic() @Temporal(TemporalType.DATE)
@@ -97,5 +99,10 @@ public class Employee {
 		this.active = active;
 	}
 	
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", dob=" + dob + ", salary=" + salary + ", gender=" + gender
+				+ ", active=" + active + ", version=" + version + "]";
+	}
 	
 }
