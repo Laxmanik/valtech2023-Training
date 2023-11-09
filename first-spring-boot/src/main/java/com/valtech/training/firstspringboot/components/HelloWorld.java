@@ -1,4 +1,4 @@
-package com.valtech.training.first_spring_boot.components;
+package com.valtech.training.firstspringboot.components;
 
 import org.springframework.stereotype.Component;
 

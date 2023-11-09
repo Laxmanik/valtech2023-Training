@@ -1,4 +1,4 @@
-package com.valtech.training.first_spring_boot;
+package com.valtech.training.firstspringboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
