@@ -24,7 +24,7 @@ public class OrderController {
 	@GetMapping(path = "/edit")
 	public String editOrder(@RequestParam("id") long id, Model model) {
 		model.addAttribute("order", new OrderModel(orderService.getOrder(id)));
-		return"order/edit";
+		return "order/edit";
 	}
 	
 //	@GetMapping(path = "/delete")
