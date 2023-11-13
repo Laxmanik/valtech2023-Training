@@ -1,5 +1,8 @@
 package com.valtech.training.firstspringboot.components;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class AirthmeticImpl implements Airthmetic {
 
 	@Override

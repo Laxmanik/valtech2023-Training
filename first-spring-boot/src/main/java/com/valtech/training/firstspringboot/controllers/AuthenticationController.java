@@ -38,7 +38,7 @@ public class AuthenticationController {
 				return "changePassword";
 			}
 		} else {
-			model.addAttribute("message", "Password and Confirm Password doesn't match..!");
+			model.addAttribute("message", "New Password and Confirm Password doesn't match..!");
 			return "changePassword";
 		}
 		return "redirect:logout";
