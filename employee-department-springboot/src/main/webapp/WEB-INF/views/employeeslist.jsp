@@ -1,3 +1,5 @@
+<%@page import="com.valtech.training.employeedepartmentspringboot.models.EmployeeModel"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -5,12 +7,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Employees List</title>
 </head>
-<body>
-	<h2>Employee List</h2>
-
-	<table border="1">
+<body align="center">
+	<h2>Employees List</h2>
+	<% List<EmployeeModel> employees = (List<EmployeeModel>) request.getAttribute("employees"); %>
+	<table border="1" align="center">
 		<tr>
 			<th>Emp Id</th>
 			<th>Name</th>
@@ -20,8 +22,9 @@
 			<th>Salary</th>
 			<th>Dept Id</th>
 		</tr>
-
+		
 		<c:forEach var="employee" items="${employees}"> 
+		<% request.setAttribute("employees", employees); %>
 			<tr>
 				<td>${employee.id}</td>
 				<td>${employee.name}</td>
@@ -29,7 +32,7 @@
 				<td>${employee.experience}</td>
 				<td>${employee.seniority}</td>
 				<td>${employee.salary}</td>
-				<td>${employee.dept_id}</td>
+				<td>${employee.department.deptId}</td>
 			</tr>
 		</c:forEach>
 	</table>

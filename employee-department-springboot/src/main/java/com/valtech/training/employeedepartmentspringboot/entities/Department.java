@@ -48,5 +48,4 @@ public class Department {
 	public void setDeptLocation(String deptLocation) {
 		this.deptLocation = deptLocation;
 	}
-
 }

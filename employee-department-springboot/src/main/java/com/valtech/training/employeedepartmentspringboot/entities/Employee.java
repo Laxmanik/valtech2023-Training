@@ -46,6 +46,17 @@ public class Employee {
 		this.department = department;
 	}
 
+	public Employee(int id, String name, int age, int experience, int seniority, int salary, Department department) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.experience = experience;
+		this.seniority = seniority;
+		this.salary = salary;
+		this.department = department;
+	}
+
 	public Department getDepartment() {
 		return department;
 	}

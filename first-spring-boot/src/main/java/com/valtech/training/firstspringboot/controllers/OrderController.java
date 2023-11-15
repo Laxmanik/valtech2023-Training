@@ -47,7 +47,6 @@ public class OrderController {
 		model.addAttribute("orders",
 				orderService.getAllOrders().stream().map(order -> new OrderModel(order)).collect(Collectors.toList()));
 		return "order/list";
-
 	}
 
 	@GetMapping("/new")
