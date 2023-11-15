@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.valtech.training.employeedepartmentspringboot.models.DepartmentModel;
@@ -54,6 +55,12 @@ public class EmployeeDepartmentController {
 				.map(department -> new DepartmentModel(department)).collect(Collectors.toList()));
 		return "departmentslist";
 	}
+	
+	@GetMapping("/editDept")
+	public String editDepartment(@RequestParam("deptId") int deptId, Model model) {
+		model.addAttribute("department", new DepartmentModel(employeeDepartmentService.getDepartment(deptId)));
+		return "addOrEditDepartment";
+	}
 
 	@GetMapping("/employeeslist")
 //	@ResponseBody
@@ -68,7 +75,7 @@ public class EmployeeDepartmentController {
 	@GetMapping("/newEmployee")
 	public String newEmployee(Model model) {
 		model.addAttribute("employee", new EmployeeModel());
-		return "addOrEditEmployee";
+		return "addEmployee";
 	}
 
 	@PostMapping(path = "/save", params = "submit")
@@ -84,6 +91,12 @@ public class EmployeeDepartmentController {
 		model.addAttribute("employees", employeeDepartmentService.getAllEmployees().stream()
 				.map(employee -> new EmployeeModel(employee)).collect(Collectors.toList()));
 		return "redirect:employeeslist";
+	}
+	
+	@GetMapping("/edit")
+	public String editEmployee(@RequestParam("id") int id, Model model) {
+		model.addAttribute("employee", new EmployeeModel(employeeDepartmentService.getEmployee(id)));
+		return "editEmployee";
 	}
 
 }
