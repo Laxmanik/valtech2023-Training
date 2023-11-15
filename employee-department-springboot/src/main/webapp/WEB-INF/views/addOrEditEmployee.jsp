@@ -8,7 +8,7 @@
 <title>Add or Edit Employee</title>
 </head>
 <body>
-	<h2>Ba Guru Employee add Madu</h2>
+	<h2>Fill Particular Employee Details</h2>
 	<% EmployeeModel employee =(EmployeeModel) request.getAttribute("employee"); %>
 	<form method="post" action="save">
 		<table>

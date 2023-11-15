@@ -19,6 +19,13 @@ public class Department {
 	public Department() {
 	}
 
+	public Department(int deptId, String deptName, String deptLocation) {
+		super();
+		this.deptId = deptId;
+		this.deptName = deptName;
+		this.deptLocation = deptLocation;
+	}
+
 	public Department(String deptName, String deptLocation) {
 		super();
 		this.deptName = deptName;
