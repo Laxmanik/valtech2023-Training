@@ -33,6 +33,7 @@ public class EmployeeDepartmentServiceImpl implements EmployeeDepartmentService 
 		Employee emp1 = new Employee("Laxman", 22, 0, 0, 35000, dept1);
 		employeeRepo.save(emp);
 		employeeRepo.save(emp1);
+		departmentRepo.save(new Department("Mobility", "Pune"));
 	}
 	
 	//Create, Update, Get , getAll Department
@@ -77,6 +78,33 @@ public class EmployeeDepartmentServiceImpl implements EmployeeDepartmentService 
 	@Override
 	public List<Employee> getAllEmployees() {
 		return employeeRepo.findAll();
+	}
+
+	@Override
+	public int getFirstId() {
+		return departmentRepo.findMinId();
+	}
+
+	@Override
+	public int getLastId() {
+		return departmentRepo.findMaxId();
+	}
+
+	@Override
+	public int getPreviousId(int deptId) {
+		int id = departmentRepo.findPreviousId(deptId);
+		return id == 0 ? getLastId() : id;
+	}
+
+	@Override
+	public int getNextId(int deptId) {
+		int id = departmentRepo.findNextId(deptId);
+		return (id == 0) ? getFirstId() : id;
+	}
+
+	@Override
+	public List<Employee> getAllEmployeesByDeptId(int deptId) {
+		return employeeRepo.findEmployeeByDeptId(deptId);
 	}
 	
 }

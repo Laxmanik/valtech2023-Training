@@ -15,6 +15,14 @@ public interface EmployeeDepartmentService {
 	Department getDepartment(int deptId);
 
 	List<Department> getAllDepartments();
+	
+	int getFirstId();
+	
+	int getLastId();
+	
+	int getPreviousId(int deptId);
+	
+	int getNextId(int deptId);
 
 	//Create, Update, Get , getAll Employee
 	Employee createEmployee(Employee employee);
@@ -24,5 +32,7 @@ public interface EmployeeDepartmentService {
 	Employee getEmployee(int id);
 
 	List<Employee> getAllEmployees();
+	
+	List<Employee> getAllEmployeesByDeptId(int deptId);
 
 }

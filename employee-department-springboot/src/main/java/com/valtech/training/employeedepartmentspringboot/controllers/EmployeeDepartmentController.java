@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -24,6 +27,7 @@ public class EmployeeDepartmentController {
 
 	@Autowired
 	private EmployeeDepartmentService employeeDepartmentService;
+
 
 //	@Autowired
 //	private JdbcTemplate jdbcTemplate; //using jdbc template foro querying list
@@ -55,7 +59,7 @@ public class EmployeeDepartmentController {
 				.map(department -> new DepartmentModel(department)).collect(Collectors.toList()));
 		return "departmentslist";
 	}
-	
+
 	@GetMapping("/editDept")
 	public String editDepartment(@RequestParam("deptId") int deptId, Model model) {
 		model.addAttribute("department", new DepartmentModel(employeeDepartmentService.getDepartment(deptId)));
@@ -92,11 +96,79 @@ public class EmployeeDepartmentController {
 				.map(employee -> new EmployeeModel(employee)).collect(Collectors.toList()));
 		return "redirect:employeeslist";
 	}
-	
+
 	@GetMapping("/edit")
 	public String editEmployee(@RequestParam("id") int id, Model model) {
 		model.addAttribute("employee", new EmployeeModel(employeeDepartmentService.getEmployee(id)));
 		return "editEmployee";
+	}
+
+	@GetMapping("/departmentEmployees")
+	public String firstDepartmentEmployees(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		model.addAttribute("department",
+				new DepartmentModel(employeeDepartmentService.getDepartment(employeeDepartmentService.getFirstId())));
+		model.addAttribute("employees",
+				employeeDepartmentService.getAllEmployeesByDeptId(employeeDepartmentService.getFirstId()).stream()
+						.map(employee -> new EmployeeModel(employee)).collect(Collectors.toList()));
+		session.setAttribute("current", employeeDepartmentService.getFirstId());
+		return "departmentEmployees";
+	}
+
+	@PostMapping(path = "/dept", params = "submit")
+	public String listDepartmentEmployees(@RequestParam("submit") String submit, HttpServletRequest request, Model model) {
+
+		HttpSession session = request.getSession();
+		int current = (int) session.getAttribute("current");
+		if (submit.equals("First")) {	
+			current = employeeDepartmentService.getFirstId();
+			model.addAttribute("department",
+					new DepartmentModel(employeeDepartmentService.getDepartment(current)));
+			model.addAttribute("employees",
+					employeeDepartmentService.getAllEmployeesByDeptId(current).stream()
+							.map(employee -> new EmployeeModel(employee)).collect(Collectors.toList()));
+		} else if (submit.equals("Next")) {
+			if (current != employeeDepartmentService.getLastId()) {
+			current = employeeDepartmentService.getNextId(current);
+			model.addAttribute("department",
+					new DepartmentModel(employeeDepartmentService.getDepartment(current)));
+			model.addAttribute("employees",
+					employeeDepartmentService.getAllEmployeesByDeptId(current)
+							.stream().map(employee -> new EmployeeModel(employee)).collect(Collectors.toList()));
+			} else {
+				current = employeeDepartmentService.getFirstId();
+				model.addAttribute("department",
+						new DepartmentModel(employeeDepartmentService.getDepartment(current)));
+				model.addAttribute("employees",
+						employeeDepartmentService.getAllEmployeesByDeptId(current)
+								.stream().map(employee -> new EmployeeModel(employee)).collect(Collectors.toList()));
+			}
+		}else if (submit.equals("Previous")) {
+			if(current != employeeDepartmentService.getFirstId()) {
+			current = employeeDepartmentService.getPreviousId(current);
+			model.addAttribute("department",
+					new DepartmentModel(employeeDepartmentService.getDepartment(current)));
+			model.addAttribute("employees",
+					employeeDepartmentService.getAllEmployeesByDeptId(current)
+							.stream().map(employee -> new EmployeeModel(employee)).collect(Collectors.toList()));
+			} else {
+				current = employeeDepartmentService.getLastId();
+				model.addAttribute("department",
+						new DepartmentModel(employeeDepartmentService.getDepartment(current)));
+				model.addAttribute("employees",
+						employeeDepartmentService.getAllEmployeesByDeptId(current)
+								.stream().map(employee -> new EmployeeModel(employee)).collect(Collectors.toList()));
+			}
+		} else if (submit.equals("Last")) {
+			current = employeeDepartmentService.getLastId();
+			model.addAttribute("department",
+					new DepartmentModel(employeeDepartmentService.getDepartment(current)));
+			model.addAttribute("employees",
+					employeeDepartmentService.getAllEmployeesByDeptId(current)
+							.stream().map(employee -> new EmployeeModel(employee)).collect(Collectors.toList()));
+		}
+		session.setAttribute("current", current);
+		return "departmentEmployees";
 	}
 
 }

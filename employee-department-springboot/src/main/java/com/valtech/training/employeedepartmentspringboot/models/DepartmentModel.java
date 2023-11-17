@@ -1,6 +1,9 @@
 package com.valtech.training.employeedepartmentspringboot.models;
 
+import java.util.List;
+
 import com.valtech.training.employeedepartmentspringboot.entities.Department;
+import com.valtech.training.employeedepartmentspringboot.entities.Employee;
 
 public class DepartmentModel {
 
@@ -17,7 +20,7 @@ public class DepartmentModel {
 		this.deptName = department.getDeptName();
 		this.deptLocation = department.getDeptLocation();
 	}
-	
+
 	public Department getDepartment() {
 		return new Department(deptId, deptName, deptLocation);
 	}
