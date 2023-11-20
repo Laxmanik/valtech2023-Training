@@ -21,7 +21,7 @@ public class AddressDAOImpl implements AddressDAO {
 		@Override
 		public Address mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Address address = new Address();
-			address.setId(rs.getInt(1));
+			address.setAddressId(rs.getInt(1));
 			address.setStreet(rs.getString(2));
 			address.setCity(rs.getString(3));
 			address.setZipcode(rs.getInt(4));
@@ -35,20 +35,20 @@ public class AddressDAOImpl implements AddressDAO {
 	
 	@Override
 	public void createAddress(Address address) {
-		String createQuery = "INSERT INTO Address (id, street, city, zipcode) values (?, ?, ?, ?)";
-		new JdbcTemplate(dataSource).update(createQuery, address.getId(), address.getStreet(), address.getCity(), address.getZipcode());
+		String createQuery = "INSERT INTO Address (addressId, street, city, zipcode) values (?, ?, ?, ?)";
+		new JdbcTemplate(dataSource).update(createQuery, address.getAddressId(), address.getStreet(), address.getCity(), address.getZipcode());
 	}
 	
 	@Override
 	public long count() {
-		String countQuery = "SELECT COUNT(id) FROM Address";
+		String countQuery = "SELECT COUNT(addressId) FROM Address";
 		return new JdbcTemplate(dataSource).queryForObject(countQuery, Long.class);
 	}
 	
 	@Override
-	public void deleteAddress(int id) {
-		String deleteQuery = "DELETE FROM Address WHERE ID=?";
-		new JdbcTemplate(dataSource).update(deleteQuery, id);
+	public void deleteAddress(int addressId) {
+		String deleteQuery = "DELETE FROM Address WHERE addressId=?";
+		new JdbcTemplate(dataSource).update(deleteQuery, addressId);
 	}
 	
 	@Override
@@ -58,14 +58,14 @@ public class AddressDAOImpl implements AddressDAO {
 	}
 	
 	@Override
-	public Address getAddress(int id) {
-		String selectQuery = "SELECT id, street, city from Address WHERE id = ?";
+	public Address getAddress(int addressId) {
+		String selectQuery = "SELECT addressId, street, city from Address WHERE addressId = ?";
 		return (Address) new JdbcTemplate(dataSource).query(selectQuery, new AddressRowMapper());
 	}
 	
 	@Override
 	public List<Address> getAllAddress() {
-		String selectAllQuery = "SELECT id, street, city, zipcode FROM Address";
+		String selectAllQuery = "SELECT addressId, street, city, zipcode FROM Address";
 		return new JdbcTemplate(dataSource).query(selectAllQuery, new AddressRowMapper());
 	}
 	

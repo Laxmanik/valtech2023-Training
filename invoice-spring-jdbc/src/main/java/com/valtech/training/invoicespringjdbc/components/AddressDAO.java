@@ -8,11 +8,11 @@ public interface AddressDAO {
 
 	long count();
 
-	void deleteAddress(int id);
+	void deleteAddress(int addressId);
 
 	void updateAddress(Address address);
 
-	Address getAddress(int id);
+	Address getAddress(int addressId);
 
 	List<Address> getAllAddress();
 

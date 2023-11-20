@@ -2,7 +2,7 @@ package com.valtech.training.invoicespringjdbc.components;
 
 public class Address {
 
-	private int id;
+	private int addressId;
 	private String street;
 	private String city;
 	private int zipcode;
@@ -12,7 +12,7 @@ public class Address {
 
 	public Address(int id, String street, String city, int zipcode) {
 		super();
-		this.id = id;
+		this.addressId = id;
 		this.street = street;
 		this.city = city;
 		this.zipcode = zipcode;
@@ -25,12 +25,12 @@ public class Address {
 		this.zipcode = zipcode;
 	}
 
-	public int getId() {
-		return id;
+	public int getAddressId() {
+		return addressId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setAddressId(int id) {
+		this.addressId = id;
 	}
 
 	public String getStreet() {

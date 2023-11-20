@@ -36,7 +36,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public void createCustomer(Customer customer) {
-		String createQuery = "INSERT INTO Customer (customerId, customerName, phoneNo, addressId) VALUES (?, ?, ?)";
+		String createQuery = "INSERT INTO Customer (customerId, customerName, phoneNo, addressId) VALUES (?, ?, ?, ?)";
 		new JdbcTemplate(dataSource).update(createQuery, customer.getCustomerId(), customer.getCustomerName(),
 				customer.getPhoneNo(), customer.getAddressId());
 	}
