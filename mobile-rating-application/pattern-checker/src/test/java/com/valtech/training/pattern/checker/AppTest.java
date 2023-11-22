@@ -1,5 +1,8 @@
 package com.valtech.training.pattern.checker;
 
+import java.util.Arrays;
+import java.util.List;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -34,5 +37,11 @@ public class AppTest
     public void testApp()
     {
         assertTrue( true );
+    }
+    
+    public void testPatternCheckerService() {
+    	PatternCheckerService pc = new PatternCheckerServiceImpl();
+    	List<String> phoneNumbers = Arrays.asList("8970565176");
+    	System.out.println(pc.checkPatterns(phoneNumbers));
     }
 }

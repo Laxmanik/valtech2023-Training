@@ -6,6 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 public class PatternCheckerServiceImpl implements PatternCheckerService {
+	
+	
+
+	public PatternCheckerServiceImpl() {
+	}
 
 	@Override
 	public Map<String, Integer> checkPatterns(List<String> phoneNumbers) {
@@ -115,10 +120,10 @@ public class PatternCheckerServiceImpl implements PatternCheckerService {
 		return true;
 	}
 	
-	public static void main(String[] args) {
-		PatternCheckerService pc = new PatternCheckerServiceImpl();
-		List<String> phoneNumbers = Arrays.asList("9945711296", "9739220033", "8151803366", "8970565176", "9900135729","9916878237","9999999999");
-		System.out.println(pc.checkPatterns(phoneNumbers));
-	}
+//	public static void main(String[] args) {
+//		PatternCheckerService pc = new PatternCheckerServiceImpl();
+//		List<String> phoneNumbers = Arrays.asList("9945711296", "9739220033", "8151803366", "8970565176", "9900135729","9916878237","9999999999");
+//		System.out.println(pc.checkPatterns(phoneNumbers));
+//	}
 
 }
