@@ -37,5 +37,10 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="D:/Batch-1/apache-tomcat-8.5.94-windows-x64/apache-tomcat-8.5.94/lib/servlet-api.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="https://docs.oracle.com/javaee/7/api/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

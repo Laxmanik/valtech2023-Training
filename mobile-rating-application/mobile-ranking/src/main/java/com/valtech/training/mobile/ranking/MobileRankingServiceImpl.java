@@ -53,10 +53,10 @@ public class MobileRankingServiceImpl implements MobileRankingService {
 		return sortedPhoneNumbers;
 	}
 	
-	public static void main(String[] args) {
-		MobileRankingService mr = new MobileRankingServiceImpl();
-    	List<String> phoneNumbers = Arrays.asList("9945711296", "9739220033", "8151803366", "8970565176", "9900135729","9916878237","9999999999");
-    	System.out.println(mr.rankMobile(phoneNumbers));
-	}
+//	public static void main(String[] args) {
+//		MobileRankingService mr = new MobileRankingServiceImpl();
+//    	List<String> phoneNumbers = Arrays.asList("9945711296", "9739220033", "8151803366", "8970565176", "9900135729","9916878237","9999999999");
+//    	System.out.println(mr.rankMobile(phoneNumbers));
+//	}
 
 }
