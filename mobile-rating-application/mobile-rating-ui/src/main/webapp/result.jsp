@@ -23,5 +23,8 @@
 		}
 		%>
 	</ol>
+	<p>
+	<a href="index.jsp">Go back to Generate Rank for other Phone Numbers</a>
+	</p>
 </body>
 </html>

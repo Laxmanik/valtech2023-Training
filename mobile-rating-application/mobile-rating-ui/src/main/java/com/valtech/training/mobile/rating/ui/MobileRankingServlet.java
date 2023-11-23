@@ -21,6 +21,7 @@ public class MobileRankingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	//	private PatternCheckerService patternCheckerService = new PatternCheckerServiceImpl();
 	private MobileRankingService mobileRankingService = new MobileRankingServiceImpl();
+	private RatingHelper ratingHelper = new RatingHelper();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -37,7 +38,8 @@ public class MobileRankingServlet extends HttpServlet {
 		String[] phoneNumbersArray = phoneNumbersInput.split("\n");
 		List<String> phoneNumbers = Arrays.asList(phoneNumbersArray);
 
-		List<String> rankedPhoneNumbers = mobileRankingService.rankMobile(phoneNumbers);
+//		List<String> rankedPhoneNumbers = mobileRankingService.rankMobile(phoneNumbers);
+		List<String> rankedPhoneNumbers = ratingHelper.getRanking(phoneNumbers);
 
 		request.setAttribute("rankedPhoneNumbers", rankedPhoneNumbers);
 
