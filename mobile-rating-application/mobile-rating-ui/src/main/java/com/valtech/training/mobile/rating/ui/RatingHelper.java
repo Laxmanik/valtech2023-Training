@@ -25,7 +25,8 @@ public class RatingHelper {
 	}
 
 	private boolean isValidPhoneNumber(String phoneNumber) {
-		// TODO Auto-generated method stub
 		return phoneNumber != null && phoneNumber.matches("[6789]\\d{9}");
 	}
+	
+	
 }
