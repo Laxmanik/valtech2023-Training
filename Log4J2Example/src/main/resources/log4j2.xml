@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<Appenders>
+		<Console name="LogToConsole" target="SYATEM_OUT">
+			<PatternLayout>
+				<Pattern>%d - %C [%M] - (%p) %m %n </Pattern>
+			</PatternLayout>
+		</Console>
+		<File name="LogToFile" fileName="logs/myapp.log">
+			<PatternLayout>
+				<Pattern>%d - %C [%M] - (%p) %m %n </Pattern>
+			</PatternLayout>
+		</File>
+		<!-- <File></File> <JDBC></JDBC> <SMTP></SMTP> -->
+	</Appenders>
+	<Loggers>
+		<Root level="info">
+			<AppenderRef ref="LogToConsole" />
+			<AppenderRef ref="LogToFile" />
+		</Root>
+	</Loggers>
+</configuration>

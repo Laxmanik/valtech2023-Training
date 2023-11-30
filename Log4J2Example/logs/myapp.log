@@ -1,0 +1,4 @@
+2023-11-30 14:49:37,371 - com.valtech.training.log4j2.example.Test [processData] - (ERROR) FROM ERROR METOD 
+2023-11-30 14:49:37,379 - com.valtech.training.log4j2.example.Test [processData] - (INFO) FROM INFO METOD 
+2023-11-30 14:49:37,381 - com.valtech.training.log4j2.example.Test [processData] - (WARN) FROM WARN METOD 
+2023-11-30 14:49:37,382 - com.valtech.training.log4j2.example.Test [processData] - (FATAL) FROM FATAL METOD 
