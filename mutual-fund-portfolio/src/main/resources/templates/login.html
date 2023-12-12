@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mutual Fund Portfolio</title>
+	<link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+
+<body>
+
+	<div class="wrapper">
+		<form th:action="@{/login}" method="post">
+			<h1>Login</h1>
+			<div class="input-box"><input type="text" placeholder="portfolio number" name="username" equired></div>
+			<div class="input-box"><input type="password" placeholder="password" name="password" required></div>
+
+
+			<button type="submit" class="btn">Login</button>
+
+			<div class"register-link">
+				<p>do not have an account? <a href="/register">Signin</a></p>
+			</div>
+		</form>
+	</div>
+</body>

@@ -1,0 +1,55 @@
+body{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('/bcimage.jpg'); /* Set the path to your background image */
+    background-size:150%;
+    background-position: center;
+   
+   
+    
+}
+
+header {
+    background-color: rgb(116, 223, 85);
+    color: white;
+    padding: 12px; /* Increase the padding to increase the height */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin-right: 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px; /* Increase the font size for better visibility */
+}
+
+.logo {
+    order: -1; /* Move the logo to the start of the flex container */
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Apply a circular border-radius */
+    object-fit: cover; /* Ensure the image covers the circular area */
+}
+
+
+
+.content {
+    padding: 20px;
+    color: #333; /* Set text color for better visibility on the background */
+}
