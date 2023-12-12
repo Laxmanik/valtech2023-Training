@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,16 +13,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import com.valtech.training.firstspringboot.models.ChangePasswordModel;
 import com.valtech.training.firstspringboot.models.RegisterUserModel;
 import com.valtech.training.firstspringboot.services.AuthenticationService;
 
+import ch.qos.logback.classic.Logger;
+
 @Controller
 public class AuthenticationController {
+	
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(AuthenticationController.class);
 
 	@Autowired
 	private AuthenticationService authenticationService;
@@ -41,11 +44,13 @@ public class AuthenticationController {
 			model.addAttribute("message", "New Password and Confirm Password doesn't match..!");
 			return "changePassword";
 		}
+		logger.debug("Password changed Successfully");
 		return "redirect:logout";
 	}
 
 	@GetMapping("/changePassword")
 	public String changePasswordForm() {
+		logger.debug("requested to change password");
 		return "changePassword";
 	}
 
@@ -68,6 +73,7 @@ public class AuthenticationController {
 
 	@GetMapping("/login")
 	public String login() {
+		logger.debug("reguest to login page");
 		return "login";
 	}
 
