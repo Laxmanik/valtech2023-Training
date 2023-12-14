@@ -6,7 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>My Mutual Fund Portfolio App</title>
 	<link rel="stylesheet" th:href="@{/css/home.css}" />
-	<link rel="stylesheet" th:href="@{/css/user-icon.css}" />
 </head>
 
 <body>
@@ -15,11 +14,10 @@
 			<header>
 				<nav>
 					<ul>
-						<li><a th:href="@{/home}">Home</a></li>
-						<li><a th:href="@{/invest}">Invest</a></li>
-						<li><a th:href="@{/redeem}">Redeem</a></li>
-						<li><a th:href="@{/dashboard}">Dashboard</a></li>
-						<li class="user-icon" th:utext="${user.name.substring(0)}"></li>
+						<li><a th:href="@{/mutualfund/home}">Home</a></li>
+						<li><a th:href="@{/mutualfund/invest}">Invest</a></li>
+						<li><a th:href="@{/mutualfund/redeem}">Redeem</a></li>
+						<li><a th:href="@{/mutualfund/dashboard}">Dashboard</a></li>
 					</ul>
 				</nav>
 				<div class="logo">

@@ -1,5 +1,6 @@
 package com.valtech.poc.mutualfundportfolio.services;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,8 +11,12 @@ import com.valtech.poc.mutualfundportfolio.entities.User;
 import com.valtech.poc.mutualfundportfolio.entities.UserDetailsImpl;
 import com.valtech.poc.mutualfundportfolio.repositories.UserRepository;
 
+import ch.qos.logback.classic.Logger;
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+	
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
 	@Autowired
 	private UserRepository userRepository;

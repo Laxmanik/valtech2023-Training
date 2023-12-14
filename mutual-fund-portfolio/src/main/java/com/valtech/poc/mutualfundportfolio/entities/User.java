@@ -18,8 +18,10 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String name;
+	private String firstName;
+	private String lastName;
 	private int age;
+	private long phoneNumber;
 	private String email;
 	private String password;
 	private String portfolioNumber;
@@ -29,9 +31,9 @@ public class User {
 	private String role;
 	@OneToMany(targetEntity = Transaction.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
 	private Set<Transaction> transactions;
-	
+
 	public void addTransactions(Transaction transaction) {
-		if(getTransactions()==null) {
+		if (getTransactions() == null) {
 			setTransactions(new HashSet<Transaction>());
 		}
 		getTransactions().add(transaction);
@@ -42,10 +44,12 @@ public class User {
 		super();
 	}
 
-	public User(String name, int age, String email, String password) {
+	public User(String firstName, String lastName, int age, long phoneNumber, String email, String password) {
 		super();
-		this.name = name;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.age = age;
+		this.phoneNumber = phoneNumber;
 		this.email = email;
 		this.password = password;
 	}
@@ -56,14 +60,6 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public int getAge() {
@@ -137,6 +133,29 @@ public class User {
 	public void setTransactions(Set<Transaction> transactions) {
 		this.transactions = transactions;
 	}
-	
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public long getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
 }

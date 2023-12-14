@@ -1,6 +1,10 @@
 package com.valtech.poc.mutualfundportfolio.services;
 
+import com.valtech.poc.mutualfundportfolio.entities.User;
+
 public interface EmailService {
-	void sendSimpleMessage(String toEmail, String subject, String body);
+	String getEmailContent(User user) throws Exception;
+
+	void sendSimpleMessage(User user) throws Exception;
 
 }

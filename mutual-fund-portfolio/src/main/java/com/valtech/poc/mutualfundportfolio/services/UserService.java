@@ -4,7 +4,8 @@ import com.valtech.poc.mutualfundportfolio.entities.User;
 
 public interface UserService {
 
-	User createUser(User user);
+	User createUser(User user) throws Exception;
+
 	String generatePortfolioNumber(String name);
 
 }

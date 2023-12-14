@@ -21,7 +21,7 @@
 			<nav>
 				<ul>
 					<li><a th:href="@{/mutualfund/admin}">Mutual Funds</a></li>
-					<li><a th:href="@{/logout}">Logout</a></li>
+					<!-- <li><a th:href="@{/schemes}">Mutual Fund Schemes</a></li> -->
 					<h2>
 						<b>
 							<span class="text-primary">Admin</span>
@@ -35,24 +35,24 @@
 			<table id="mftypes" title="Mutual Fund types">
 				<thead>
 					<tr>
-						<th>Mutual Fund Id</th>
-						<th>Mutual Fund Type</th>
+						<th>Scheme Id</th>
+						<th>Scheme Name</th>
 						<th>Description</th>
-						<th>Mutual Fund Schemes</th>
+						<th>NetAssetValue</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="mutualFund : ${mutualFunds}">
-						<td th:text="${mutualFund.id}"></td>
-						<td th:text="${mutualFund.type}"></td>
-						<td th:text="${mutualFund.description}"></td>
-						<td> <a th:href="@{/mutualfund/viewSchemes/{mutualFundId}(mutualFundId=${mutualFund.id})}">View</a></td>
+					<tr th:each="scheme : ${schemes}">
+						<td th:text="${scheme.id}"></td>
+						<td th:text="${scheme.schemeName}"></td>
+						<td th:text="${scheme.description}"></td>
+						<td th:text="${scheme.netAssetValue}"></td>
+						<td> <a th:href="@{/mutualfund/edit/{schemeId}(schemeId=${scheme.id})}">Edit</a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</header>
-
 	<main>
 		<footer class="footer bg-dark">
 			<p>Copyright &copy; 2023 - MutualFund Portfolio</p>
