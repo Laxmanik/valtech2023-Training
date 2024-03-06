@@ -1,0 +1,5 @@
+FROM maven
+WORKDIR /app
+COPY . .
+EXPOSE 5000
+CMD ["mvn", "clean", "spring-boot:run"]
