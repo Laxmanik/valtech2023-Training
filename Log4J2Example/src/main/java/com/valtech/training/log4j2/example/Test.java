@@ -7,16 +7,16 @@ import org.apache.logging.log4j.Logger;
 
 public class Test {
 	
-	private static final Logger log = LogManager.getLogger(Test.class);
+	private static final Logger LOGGER = LogManager.getLogger(Test.class);
 	
 	public static void processData() {
 		//log methods with priorities
-		log.trace("FROM TRACE METHOD");
-		log.debug("FROM DEBUG METHOD");
-		log.error("FROM ERROR METOD");
-		log.info("FROM INFO METOD");
-		log.warn("FROM WARN METOD");
-		log.fatal("FROM FATAL METOD");
+		LOGGER.trace("FROM TRACE METHOD");
+		LOGGER.debug("FROM DEBUG METHOD");
+		LOGGER.info("FROM INFO METHOD");
+		LOGGER.warn("FROM WARN METHOD");
+		LOGGER.error("FROM ERROR METHOD");
+		LOGGER.fatal("FROM FATAL METHOD");
 	}
 
 	public static void main(String[] args) {

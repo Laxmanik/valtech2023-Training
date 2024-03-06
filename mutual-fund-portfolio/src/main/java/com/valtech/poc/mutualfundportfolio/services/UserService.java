@@ -8,4 +8,6 @@ public interface UserService {
 
 	String generatePortfolioNumber(String name);
 
+	User getCurrentUser();
+
 }

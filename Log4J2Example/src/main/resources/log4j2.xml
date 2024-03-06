@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-	<Appenders>
-		<Console name="LogToConsole" target="SYATEM_OUT">
-			<PatternLayout>
-				<Pattern>%d - %C [%M] - (%p) %m %n </Pattern>
-			</PatternLayout>
-		</Console>
-		<File name="LogToFile" fileName="logs/myapp.log">
-			<PatternLayout>
-				<Pattern>%d - %C [%M] - (%p) %m %n </Pattern>
-			</PatternLayout>
-		</File>
-		<!-- <File></File> <JDBC></JDBC> <SMTP></SMTP> -->
-	</Appenders>
-	<Loggers>
-		<Root level="info">
-			<AppenderRef ref="LogToConsole" />
-			<AppenderRef ref="LogToFile" />
-		</Root>
-	</Loggers>
+    <Appenders>
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d - %C [%M] - (%p) %m %n</Pattern>
+            </PatternLayout>
+            <!-- Set up a ThresholdFilter to filter DEBUG messages and below -->
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </Console>
+        <File name="LogToFile" fileName="logs/application.log">
+            <PatternLayout>
+                <Pattern>%d - %C [%M] - (%p) %m %n</Pattern>
+            </PatternLayout>
+            <!-- Set up a ThresholdFilter to filter INFO messages and below -->
+            <Filters>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="DEBUG">
+            <AppenderRef ref="LogToConsole" />
+            <AppenderRef ref="LogToFile" />
+        </Root>
+    </Loggers>
 </configuration>

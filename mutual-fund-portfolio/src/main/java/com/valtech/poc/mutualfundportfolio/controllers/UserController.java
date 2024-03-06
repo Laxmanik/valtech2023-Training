@@ -46,7 +46,10 @@ public class UserController {
 	}
 
 	@GetMapping("/mutualfund/home")
-	public String userPage() {
+	public String userPage(Model model) {
+		User user = userService.getCurrentUser();
+		model.addAttribute("firstname", user.getFirstName());
+		model.addAttribute("lastname", user.getLastName());
 		return "homePage";
 	}
 

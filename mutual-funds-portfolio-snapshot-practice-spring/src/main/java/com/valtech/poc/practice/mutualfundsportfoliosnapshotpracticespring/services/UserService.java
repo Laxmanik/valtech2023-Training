@@ -1,4 +1,4 @@
-package com.valtech.poc.practice.mutualfundsportfoliosnapshotpracticespring;
+package com.valtech.poc.practice.mutualfundsportfoliosnapshotpracticespring.services;
 
 import java.util.List;
 

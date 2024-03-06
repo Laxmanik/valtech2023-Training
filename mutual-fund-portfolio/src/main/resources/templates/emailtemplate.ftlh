@@ -50,6 +50,7 @@
 		<div>Your mutual fund portfolio ID is:<b style="color:blue !important"> ${user.portfolioNumber}</b>
 		</div>
 		<p> Please use this as your username while logging into our Mutual Fund Portfolio website.</p>
+		<a href="localhost:5000/mutualfund/login" rel="link">click here to login</a>
 
 		<table>
 			<tr> 

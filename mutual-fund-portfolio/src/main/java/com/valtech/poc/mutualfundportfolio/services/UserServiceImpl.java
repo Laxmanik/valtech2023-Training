@@ -3,16 +3,19 @@ package com.valtech.poc.mutualfundportfolio.services;
 import java.time.LocalDate;
 import java.util.Random;
 
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.valtech.poc.mutualfundportfolio.entities.User;
+import com.valtech.poc.mutualfundportfolio.entities.UserDetailsImpl;
 import com.valtech.poc.mutualfundportfolio.repositories.UserRepository;
 
 import ch.qos.logback.classic.Logger;
-import jakarta.annotation.PostConstruct;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -30,16 +33,16 @@ public class UserServiceImpl implements UserService {
 
 	LocalDate date = LocalDate.now();
 
-	@PostConstruct
-	public void populateAdmin() {
-		User userAdmin = new User("ADMIN", "ADMIN", 22, 0000000000, "admin22@gmail.com", passwordEncoder.encode("admin"));
-		userAdmin.setPortfolioNumber("admin");
-		userAdmin.setEnabled(true);
-		userAdmin.setRole("ADMIN");
-		userAdmin.setRegisteredDate(date);
-
-		userRepository.save(userAdmin);
-	}
+//	@PostConstruct
+//	public void populateAdmin() {
+//		User userAdmin = new User("ADMIN", "ADMIN", 22, 0000000000, "admin22@gmail.com", passwordEncoder.encode("admin"));
+//		userAdmin.setPortfolioNumber("admin");
+//		userAdmin.setEnabled(true);
+//		userAdmin.setRole("ADMIN");
+//		userAdmin.setRegisteredDate(date);
+//
+//		userRepository.save(userAdmin);
+//	}
 
 	@Override
 	public User createUser(User user) throws Exception {
@@ -64,4 +67,18 @@ public class UserServiceImpl implements UserService {
 		return initials + randomNumbers.toString();
 
 	}
+	
+	@Override
+	public User getCurrentUser() {
+ 
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+ 
+		if (authentication != null && authentication.isAuthenticated()
+				&& authentication.getPrincipal() instanceof UserDetailsImpl) {
+			UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+			return userDetails.getUser();
+		}
+		return null;
+	}
+	
 }

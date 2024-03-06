@@ -14,15 +14,29 @@
 			<header>
 				<nav>
 					<ul>
-						<li><a th:href="@{/mutualfund/home}">Home</a></li>
+						<li>
+							<div><a th:href="@{/mutualfund/home}">Home</a></div>
+						</li>
 						<li><a th:href="@{/mutualfund/invest}">Invest</a></li>
 						<li><a th:href="@{/mutualfund/redeem}">Redeem</a></li>
 						<li><a th:href="@{/mutualfund/dashboard}">Dashboard</a></li>
+						<li>
+							<div class="user-icon">
+								<button class="user-icon-button" th:text="${firstname.substring(0,1)}+${lastname.substring(0,1)}"></button>
+								<div class="dropdown-content">
+									<a href="@{/mutualfund/new}">View Profile</a>
+									<a href="@{/mutualfund/new}">Invest Transaction</a>
+									<a href="@{/mutualfund/new}">Redeem Transaction</a>
+									<a href="@{/mutualfund/login}">Logout</a>
+								  </div>
+							</div>
+						</li>
 					</ul>
 				</nav>
 				<div class="logo">
 					<img src="/mflogo.jpg" alt="Logo">
 				</div>
+
 			</header>
 
 			<div class="content">
@@ -31,6 +45,7 @@
 			</div>
 		</div>
 	</div>
+	<script th:src="@{/js/script.js}"></script>
 </body>
 
 </html>

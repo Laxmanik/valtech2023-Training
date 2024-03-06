@@ -1,0 +1,10 @@
+2024-01-29 17:28:39,862 - com.valtech.training.log4j2.example.Test [processData] - (DEBUG) FROM DEBUG METHOD 
+2024-01-29 17:28:39,870 - com.valtech.training.log4j2.example.Test [processData] - (INFO) FROM INFO METHOD 
+2024-01-29 17:28:39,871 - com.valtech.training.log4j2.example.Test [processData] - (WARN) FROM WARN METHOD 
+2024-01-29 17:28:39,873 - com.valtech.training.log4j2.example.Test [processData] - (ERROR) FROM ERROR METHOD 
+2024-01-29 17:28:39,874 - com.valtech.training.log4j2.example.Test [processData] - (FATAL) FROM FATAL METHOD 
+2024-01-30 10:12:21,895 - com.valtech.training.log4j2.example.Test [processData] - (DEBUG) FROM DEBUG METHOD 
+2024-01-30 10:12:21,912 - com.valtech.training.log4j2.example.Test [processData] - (INFO) FROM INFO METHOD 
+2024-01-30 10:12:21,914 - com.valtech.training.log4j2.example.Test [processData] - (WARN) FROM WARN METHOD 
+2024-01-30 10:12:21,916 - com.valtech.training.log4j2.example.Test [processData] - (ERROR) FROM ERROR METHOD 
+2024-01-30 10:12:21,918 - com.valtech.training.log4j2.example.Test [processData] - (FATAL) FROM FATAL METHOD 
