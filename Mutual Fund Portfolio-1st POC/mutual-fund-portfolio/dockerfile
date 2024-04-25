@@ -1,5 +1,21 @@
-FROM maven
+FROM maven:3.8.4-openjdk-17 AS build
 WORKDIR /app
+
+# Copy only the pom.xml first
+COPY pom.xml .
+
+# Download the Maven dependencies (invalidate cache if pom.xml is updated)
+RUN mvn dependency:go-offline
+
+# Copy the rest of the application source code
 COPY . .
+
+# Build the application
+RUN mvn clean package -DskipTests
+
+FROM openjdk:17-slim
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+
 EXPOSE 5000
-CMD ["mvn", "clean", "spring-boot:run"]
+CMD ["java", "-jar", "app.jar"]
