@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./bookmyseat-backend
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/bookmyseat?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_FLYWAY_URL: jdbc:mysql://mysql-container:3306/bookmyseat?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_FLYWAY_USER: root
+      SPRING_FLYWAY_PASSWORD: root
+      SPRING_FLYWAY_BASELINE_ON_MIGRATE: true
+      APP_JWT_SERCERT: f1c629899fd410f499a13021b4e33cb1824ec9411539725919330d10c582b409
+      APP_JWT_EXPIRATION_MILLISECONDS: 86400000
+    ports:
+      - "9006:9006"
+    depends_on:
+      - mysql-container
+
+  frontend:
+    build:
+      context: ./bookmyseat-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+
+  mysql-container:
+    image: mysql:8.1
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: boomyseat
+    ports:
+      - "3307:3306"
